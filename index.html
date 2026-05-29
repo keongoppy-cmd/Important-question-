@@ -9,98 +9,278 @@
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
-    }body {
-  height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-  url('YOUR_IMAGE_LINK_HERE') center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-}
+    }
 
-.container {
-  background: rgba(0,0,0,0.55);
-  padding: 40px;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 600px;
-  backdrop-filter: blur(6px);
-}
+    body {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url('YOUR_IMAGE_LINK_HERE') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
 
-h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
+    .container {
+      background: rgba(0,0,0,0.55);
+      padding: 40px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 700px;
+      backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 10;
+    }
 
-p {
-  font-size: 1.3rem;
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
+    /* Tom and Jerry Animation */
+    .meme-container {
+      height: 150px;
+      margin-bottom: 30px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+    .tom {
+      font-size: 4rem;
+      position: absolute;
+      left: 10%;
+      animation: tomWalk 4s infinite ease-in-out;
+    }
 
-button {
-  padding: 15px 30px;
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
+    .jerry {
+      font-size: 2.5rem;
+      position: absolute;
+      right: 10%;
+      animation: jerryWalk 4s infinite ease-in-out;
+    }
 
-.yes {
-  background: #ff4d6d;
-  color: white;
-}
+    .heart {
+      font-size: 2rem;
+      position: absolute;
+      animation: floatHeart 3s infinite ease-in;
+      opacity: 0;
+    }
 
-.yes:hover {
-  transform: scale(1.1);
-  background: #ff1e4d;
-}
+    @keyframes tomWalk {
+      0% { left: 10%; transform: scaleX(1); }
+      25% { left: 30%; }
+      50% { left: 45%; }
+      75% { left: 30%; }
+      100% { left: 10%; }
+    }
 
-.no {
-  background: white;
-  color: black;
-  position: relative;
-}
+    @keyframes jerryWalk {
+      0% { right: 10%; transform: scaleX(-1); }
+      25% { right: 30%; }
+      50% { right: 45%; }
+      75% { right: 30%; }
+      100% { right: 10%; }
+    }
 
-.message {
-  margin-top: 25px;
-  font-size: 1.5rem;
-  display: none;
-  color: #ffd166;
-}
+    @keyframes floatHeart {
+      0% {
+        bottom: 50px;
+        opacity: 1;
+        left: 50%;
+        transform: translateX(-50%) scale(1);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 200px;
+        opacity: 0;
+        left: 50%;
+        transform: translateX(-50%) scale(0.5);
+      }
+    }
+
+    .hearts-burst {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      pointer-events: none;
+    }
+
+    /* Photo Section */
+    .photo-section {
+      margin-bottom: 30px;
+    }
+
+    .couple-photo {
+      width: 100%;
+      max-width: 300px;
+      height: 250px;
+      border-radius: 15px;
+      object-fit: cover;
+      border: 5px solid #ff4d6d;
+      box-shadow: 0 8px 30px rgba(255, 77, 109, 0.4);
+      animation: photoGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes photoGlow {
+      0%, 100% { box-shadow: 0 8px 30px rgba(255, 77, 109, 0.4); }
+      50% { box-shadow: 0 8px 50px rgba(255, 77, 109, 0.8); }
+    }
+
+    .photo-placeholder {
+      background: rgba(255, 77, 109, 0.2);
+      border: 3px dashed #ff4d6d;
+      width: 100%;
+      max-width: 300px;
+      height: 250px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.9rem;
+      margin: 0 auto;
+      color: #ffd166;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-weight: bold;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .yes:hover {
+      transform: scale(1.1);
+      background: #ff1e4d;
+    }
+
+    .no {
+      background: white;
+      color: black;
+      position: relative;
+    }
+
+    .message {
+      margin-top: 25px;
+      font-size: 1.5rem;
+      display: none;
+      color: #ffd166;
+      animation: celebrate 0.5s ease-in-out;
+    }
+
+    @keyframes celebrate {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .instructions {
+      font-size: 0.85rem;
+      color: #ffd166;
+      margin-top: 15px;
+      opacity: 0.8;
+    }
 
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Tom and Jerry Animation -->
+    <div class="meme-container">
+      <div class="tom">🐱</div>
+      <div class="jerry">🐭</div>
+      <div class="hearts-burst" id="heartsBurst"></div>
+    </div>
+
     <h1>Hey Beautiful ❤️</h1>
+    
+    <!-- Photo Section -->
+    <div class="photo-section">
+      <img id="couplePhoto" class="couple-photo" alt="Us together" style="display: none;">
+      <div id="photoPlaceholder" class="photo-placeholder">
+        📸 Click the button below to add your photo!
+      </div>
+      <div class="instructions">
+        (Replace YOUR_PHOTO_URL in the code with your photo URL)
+      </div>
+    </div>
+
     <p>
       Every moment with you feels special, and I was wondering...
       would you go on a date with me?
-    </p><div class="buttons">
-  <button class="yes" onclick="showMessage()">Yes 💖</button>
-  <button class="no" id="noBtn">No 😢</button>
-</div>
+    </p>
 
-<div class="message" id="message">
-  Yayyy! I can't wait for our date 🥰
-</div>
+    <div class="buttons">
+      <button class="yes" onclick="showMessage()">Yes 💖</button>
+      <button class="no" id="noBtn">No 😢</button>
+    </div>
 
-  </div>  <script>
-    function showMessage() {
-      document.getElementById('message').style.display = 'block';
+    <div class="message" id="message">
+      Yayyy! I can't wait for our date 🥰
+    </div>
+
+  </div>
+
+  <script>
+    // Photo section - Replace with your photo URL
+    const photoUrl = 'YOUR_PHOTO_URL'; // Replace this with your photo URL
+    const couplePhoto = document.getElementById('couplePhoto');
+    const photoPlaceholder = document.getElementById('photoPlaceholder');
+
+    if (photoUrl !== 'YOUR_PHOTO_URL') {
+      couplePhoto.src = photoUrl;
+      couplePhoto.style.display = 'block';
+      photoPlaceholder.style.display = 'none';
     }
 
+    // Show message and create heart burst
+    function showMessage() {
+      document.getElementById('message').style.display = 'block';
+      createHeartBurst();
+    }
+
+    // Create floating hearts
+    function createHeartBurst() {
+      const heartsBurst = document.getElementById('heartsBurst');
+      heartsBurst.innerHTML = '';
+      
+      for (let i = 0; i < 8; i++) {
+        const heart = document.createElement('div');
+        heart.textContent = '❤️';
+        heart.className = 'heart';
+        heart.style.left = (Math.random() * 100 - 50) + '%';
+        heart.style.animationDelay = (i * 0.2) + 's';
+        heartsBurst.appendChild(heart);
+      }
+    }
+
+    // No button runs away
     const noBtn = document.getElementById('noBtn');
 
     noBtn.addEventListener('mouseover', () => {
@@ -108,5 +288,20 @@ button {
       const y = Math.floor(Math.random() * 300) - 150;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
-  </script></body>
+
+    // Create continuous heart animation
+    setInterval(() => {
+      if (Math.random() > 0.7) {
+        const heart = document.createElement('div');
+        heart.textContent = '❤️';
+        heart.className = 'heart';
+        heart.style.left = (Math.random() * 100) + '%';
+        document.querySelector('.meme-container').appendChild(heart);
+        
+        setTimeout(() => heart.remove(), 3000);
+      }
+    }, 500);
+
+  </script>
+</body>
 </html>
