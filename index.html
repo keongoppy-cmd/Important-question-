@@ -106,42 +106,137 @@
       pointer-events: none;
     }
 
-    /* Photo Section */
-    .photo-section {
-      margin-bottom: 30px;
-    }
-
-    .couple-photo {
+    /* Floating Hearts Background */
+    .floating-hearts {
+      position: fixed;
       width: 100%;
-      max-width: 300px;
-      height: 250px;
-      border-radius: 15px;
-      object-fit: cover;
-      border: 5px solid #ff4d6d;
-      box-shadow: 0 8px 30px rgba(255, 77, 109, 0.4);
-      animation: photoGlow 2s infinite ease-in-out;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 5;
     }
 
-    @keyframes photoGlow {
-      0%, 100% { box-shadow: 0 8px 30px rgba(255, 77, 109, 0.4); }
-      50% { box-shadow: 0 8px 50px rgba(255, 77, 109, 0.8); }
+    .falling-heart {
+      position: absolute;
+      font-size: 3rem;
+      animation: fall 8s linear infinite;
+      opacity: 0.8;
     }
 
-    .photo-placeholder {
-      background: rgba(255, 77, 109, 0.2);
-      border: 3px dashed #ff4d6d;
+    @keyframes fall {
+      0% {
+        top: -50px;
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+
+    /* Love Modal/Popup */
+    .love-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      max-width: 300px;
-      height: 250px;
-      border-radius: 15px;
-      display: flex;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 100;
       justify-content: center;
       align-items: center;
-      font-size: 0.9rem;
-      margin: 0 auto;
-      color: #ffd166;
-      flex-direction: column;
-      gap: 10px;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .love-modal.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .love-content {
+      background: linear-gradient(135deg, #ff4d6d 0%, #ff1e4d 100%);
+      border-radius: 30px;
+      padding: 50px;
+      text-align: center;
+      max-width: 500px;
+      animation: popIn 0.6s ease-in-out;
+      box-shadow: 0 20px 60px rgba(255, 77, 109, 0.6);
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1) rotate(5deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    .love-gif {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: bounce 1s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .love-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .love-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: white;
+      line-height: 1.8;
+    }
+
+    .close-btn {
+      background: white;
+      color: #ff4d6d;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .close-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     }
 
     h1 {
@@ -202,15 +297,12 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    .instruction-link {
-      color: #ffd166;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
   </style>
 </head>
 <body>
+  <!-- Floating Hearts Background -->
+  <div class="floating-hearts" id="floatingHeartsContainer"></div>
+
   <div class="container">
     <!-- Tom and Jerry Animation -->
     <div class="meme-container">
@@ -220,15 +312,6 @@
     </div>
 
     <h1>Hey Beautiful ❤️</h1>
-    
-    <!-- Photo Section -->
-    <div class="photo-section">
-      <img id="couplePhoto" class="couple-photo" alt="Us together">
-      <div id="photoPlaceholder" class="photo-placeholder" style="display: none;">
-        <span>📸 Photo loading...</span>
-        <small>(Make sure the Google Drive link is shared publicly)</small>
-      </div>
-    </div>
 
     <p>
       Every moment with you feels special, and I was wondering...
@@ -236,7 +319,7 @@
     </p>
 
     <div class="buttons">
-      <button class="yes" onclick="showMessage()">Yes 💖</button>
+      <button class="yes" onclick="showLoveAnimation()">Yes 💖</button>
       <button class="no" id="noBtn">No 😢</button>
     </div>
 
@@ -246,43 +329,79 @@
 
   </div>
 
+  <!-- Love Modal with GIF -->
+  <div class="love-modal" id="loveModal">
+    <div class="love-content">
+      <!-- Love GIF -->
+      <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Love animation" class="love-gif">
+      
+      <h2>I Love You! 💕</h2>
+      <p>You've made me the happiest person in the world!</p>
+      
+      <button class="close-btn" onclick="closeLoveModal()">Close 💕</button>
+    </div>
+  </div>
+
   <script>
-    // Extract file ID from Google Drive URL and create direct download link
-    const googleDriveFileId = '10RTROU0WTDVztmCCrnGUrFGXFbEkNZaJ';
-    const photoUrl = `https://lh3.google.com/u/0/d/${googleDriveFileId}=w400`;
-    const couplePhoto = document.getElementById('couplePhoto');
-    const photoPlaceholder = document.getElementById('photoPlaceholder');
-    
-    couplePhoto.src = photoUrl;
-    couplePhoto.onerror = function() {
-      photoPlaceholder.style.display = 'flex';
-      couplePhoto.style.display = 'none';
-      console.log('Photo failed to load. Make sure the Google Drive file is shared publicly.');
-    };
-
-    couplePhoto.onload = function() {
-      photoPlaceholder.style.display = 'none';
-      couplePhoto.style.display = 'block';
-    };
-
-    // Show message and create heart burst
-    function showMessage() {
-      document.getElementById('message').style.display = 'block';
-      createHeartBurst();
+    // Create falling hearts background
+    function createFallingHearts() {
+      const container = document.getElementById('floatingHeartsContainer');
+      
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'falling-heart';
+        heart.textContent = '❤️';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        heart.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+        container.appendChild(heart);
+      }
     }
 
-    // Create floating hearts
+    // Show love animation modal
+    function showLoveAnimation() {
+      document.getElementById('message').style.display = 'block';
+      document.getElementById('loveModal').classList.add('active');
+      createHeartBurst();
+      createIntenseHeartAnimation();
+    }
+
+    // Close love modal
+    function closeLoveModal() {
+      document.getElementById('loveModal').classList.remove('active');
+    }
+
+    // Create heart burst animation
     function createHeartBurst() {
       const heartsBurst = document.getElementById('heartsBurst');
       heartsBurst.innerHTML = '';
       
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 15; i++) {
         const heart = document.createElement('div');
         heart.textContent = '❤️';
         heart.className = 'heart';
         heart.style.left = (Math.random() * 100 - 50) + '%';
-        heart.style.animationDelay = (i * 0.2) + 's';
+        heart.style.animationDelay = (i * 0.1) + 's';
+        heart.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
         heartsBurst.appendChild(heart);
+      }
+    }
+
+    // Create intense heart animation when modal opens
+    function createIntenseHeartAnimation() {
+      const container = document.getElementById('floatingHeartsContainer');
+      
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'falling-heart';
+        heart.textContent = '❤️';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        heart.style.fontSize = (Math.random() * 3 + 2) + 'rem';
+        container.appendChild(heart);
+        
+        // Remove after animation
+        setTimeout(() => heart.remove(), 10000);
       }
     }
 
@@ -295,18 +414,17 @@
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    // Create continuous heart animation
-    setInterval(() => {
-      if (Math.random() > 0.7) {
-        const heart = document.createElement('div');
-        heart.textContent = '❤️';
-        heart.className = 'heart';
-        heart.style.left = (Math.random() * 100) + '%';
-        document.querySelector('.meme-container').appendChild(heart);
-        
-        setTimeout(() => heart.remove(), 3000);
+    // Initialize falling hearts on page load
+    window.addEventListener('load', () => {
+      createFallingHearts();
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('loveModal').addEventListener('click', (e) => {
+      if (e.target.id === 'loveModal') {
+        closeLoveModal();
       }
-    }, 500);
+    });
 
   </script>
 </body>
