@@ -8,7 +8,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
@@ -216,10 +216,78 @@
     }
 
     .love-content p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
       color: white;
       line-height: 1.8;
+    }
+
+    .date-input-section {
+      margin: 25px 0;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+    }
+
+    .date-input-section label {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .date-input-section input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-size: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .date-input-section input:focus {
+      outline: none;
+      border-color: white;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .elegant-message {
+      font-size: 0.95rem;
+      color: #ffe4e9;
+      margin-top: 12px;
+      font-style: italic;
+      letter-spacing: 0.3px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .confirm-btn {
+      background: white;
+      color: #ff4d6d;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .confirm-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
     .close-btn {
@@ -329,16 +397,33 @@
 
   </div>
 
-  <!-- Love Modal with GIF -->
+  <!-- Love Modal with GIF and Date Picker -->
   <div class="love-modal" id="loveModal">
     <div class="love-content">
-      <!-- Goofy Blushing GIF -->
-      <img src="https://media.giphy.com/media/X7yJ4FrEHXX1e/giphy.gif" alt="Goofy blushing" class="love-gif">
+      <!-- Cute Blushing GIF -->
+      <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute blushing" class="love-gif">
       
       <h2>That's Amazing! 💕</h2>
-      <p>I'm so excited to spend time with you, Shania!</p>
+      <p>I'm so thrilled, Shania!</p>
       
-      <button class="close-btn" onclick="closeLoveModal()">Close 💕</button>
+      <div class="date-input-section">
+        <label for="dateInput">✨ Pick a Beautiful Day in June ✨</label>
+        <input 
+          type="date" 
+          id="dateInput" 
+          min="2026-06-01" 
+          max="2026-06-30"
+          placeholder="Select your date"
+        >
+        <div class="elegant-message">
+          💃 You'll look absolutely stunning, and I'll dress up elegantly for you 💼
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <button class="confirm-btn" onclick="confirmDate()">Confirm Date ✨</button>
+        <button class="close-btn" onclick="closeLoveModal()">Back 💕</button>
+      </div>
     </div>
   </div>
 
@@ -369,6 +454,24 @@
     // Close love modal
     function closeLoveModal() {
       document.getElementById('loveModal').classList.remove('active');
+      document.getElementById('dateInput').value = '';
+    }
+
+    // Confirm date selection
+    function confirmDate() {
+      const dateInput = document.getElementById('dateInput');
+      if (dateInput.value) {
+        const selectedDate = new Date(dateInput.value).toLocaleDateString('en-US', { 
+          weekday: 'long', 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+        alert(`Perfect! 💕\n\nOur date: ${selectedDate}\n\nI can't wait to see you looking stunning! 💃✨`);
+        closeLoveModal();
+      } else {
+        alert('Please select a date first 📅');
+      }
     }
 
     // Create heart burst animation
