@@ -140,6 +140,8 @@
       font-size: 0.9rem;
       margin: 0 auto;
       color: #ffd166;
+      flex-direction: column;
+      gap: 10px;
     }
 
     h1 {
@@ -200,11 +202,10 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    .instructions {
-      font-size: 0.85rem;
+    .instruction-link {
       color: #ffd166;
-      margin-top: 15px;
-      opacity: 0.8;
+      text-decoration: underline;
+      cursor: pointer;
     }
 
   </style>
@@ -222,12 +223,10 @@
     
     <!-- Photo Section -->
     <div class="photo-section">
-      <img id="couplePhoto" class="couple-photo" alt="Us together" style="display: none;">
-      <div id="photoPlaceholder" class="photo-placeholder">
-        📸 Click the button below to add your photo!
-      </div>
-      <div class="instructions">
-        (Replace YOUR_PHOTO_URL in the code with your photo URL)
+      <img id="couplePhoto" class="couple-photo" alt="Us together">
+      <div id="photoPlaceholder" class="photo-placeholder" style="display: none;">
+        <span>📸 Photo loading...</span>
+        <small>(Make sure the Google Drive link is shared publicly)</small>
       </div>
     </div>
 
@@ -248,16 +247,23 @@
   </div>
 
   <script>
-    // Photo section - Replace with your photo URL
-    const photoUrl = 'YOUR_PHOTO_URL'; // Replace this with your photo URL
+    // Extract file ID from Google Drive URL and create direct download link
+    const googleDriveFileId = '10RTROU0WTDVztmCCrnGUrFGXFbEkNZaJ';
+    const photoUrl = `https://lh3.google.com/u/0/d/${googleDriveFileId}=w400`;
     const couplePhoto = document.getElementById('couplePhoto');
     const photoPlaceholder = document.getElementById('photoPlaceholder');
+    
+    couplePhoto.src = photoUrl;
+    couplePhoto.onerror = function() {
+      photoPlaceholder.style.display = 'flex';
+      couplePhoto.style.display = 'none';
+      console.log('Photo failed to load. Make sure the Google Drive file is shared publicly.');
+    };
 
-    if (photoUrl !== 'YOUR_PHOTO_URL') {
-      couplePhoto.src = photoUrl;
-      couplePhoto.style.display = 'block';
+    couplePhoto.onload = function() {
       photoPlaceholder.style.display = 'none';
-    }
+      couplePhoto.style.display = 'block';
+    };
 
     // Show message and create heart burst
     function showMessage() {
