@@ -222,7 +222,7 @@
       line-height: 1.8;
     }
 
-    .date-input-section {
+    .message-section {
       margin: 25px 0;
       background: rgba(255, 255, 255, 0.1);
       padding: 20px;
@@ -230,64 +230,12 @@
       backdrop-filter: blur(5px);
     }
 
-    .date-input-section label {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 12px;
-      color: #fff;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .date-input-section input {
-      width: 100%;
-      padding: 12px 15px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
-      font-size: 1rem;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .date-input-section input:focus {
-      outline: none;
-      border-color: white;
-      background: rgba(255, 255, 255, 1);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    }
-
     .elegant-message {
       font-size: 0.95rem;
       color: #ffe4e9;
-      margin-top: 12px;
       font-style: italic;
       letter-spacing: 0.3px;
-    }
-
-    .button-group {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      margin-top: 25px;
-    }
-
-    .confirm-btn {
-      background: white;
-      color: #ff4d6d;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s ease;
-    }
-
-    .confirm-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      line-height: 1.6;
     }
 
     .close-btn {
@@ -397,7 +345,7 @@
 
   </div>
 
-  <!-- Love Modal with Cute Blushing GIF and Date Picker -->
+  <!-- Love Modal with Cute Blushing GIF -->
   <div class="love-modal" id="loveModal">
     <div class="love-content">
       <!-- Cute Blushing GIF -->
@@ -406,22 +354,14 @@
       <h2>That's Amazing! 💕</h2>
       <p>I'm so thrilled, Shania!</p>
       
-      <div class="date-input-section">
-        <label for="dateInput">✨ Pick a Day ✨</label>
-        <input 
-          type="date" 
-          id="dateInput" 
-          placeholder="Select your date"
-        >
+      <div class="message-section">
         <div class="elegant-message">
-          I can't wait to breathe the air around you because it's so calm and refreshing 🌬️✨
+          🌬️ I can't wait to breathe the air around you because it's so calm and refreshing<br><br>
+          📅 The date will be in June - stay tuned for more details! ✨
         </div>
       </div>
       
-      <div class="button-group">
-        <button class="confirm-btn" onclick="confirmDate()">Confirm Date ✨</button>
-        <button class="close-btn" onclick="closeLoveModal()">Back 💕</button>
-      </div>
+      <button class="close-btn" onclick="closeLoveModal()">Close 💕</button>
     </div>
   </div>
 
@@ -452,24 +392,6 @@
     // Close love modal
     function closeLoveModal() {
       document.getElementById('loveModal').classList.remove('active');
-      document.getElementById('dateInput').value = '';
-    }
-
-    // Confirm date selection
-    function confirmDate() {
-      const dateInput = document.getElementById('dateInput');
-      if (dateInput.value) {
-        const selectedDate = new Date(dateInput.value).toLocaleDateString('en-US', { 
-          weekday: 'long', 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        });
-        alert(`Perfect! 💕\n\nOur date: ${selectedDate}\n\nI can't wait! 💃✨`);
-        closeLoveModal();
-      } else {
-        alert('Please select a date first 📅');
-      }
     }
 
     // Create heart burst animation
