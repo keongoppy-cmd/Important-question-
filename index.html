@@ -138,6 +138,248 @@
       }
     }
 
+    /* Birthday Modal */
+    .birthday-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .birthday-modal.active {
+      display: flex;
+    }
+
+    .birthday-content {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B6B 100%);
+      border-radius: 30px;
+      padding: 60px 40px;
+      text-align: center;
+      max-width: 600px;
+      animation: popIn 0.8s ease-in-out;
+      box-shadow: 0 30px 80px rgba(255, 215, 0, 0.8);
+      position: relative;
+    }
+
+    /* Flowers Container */
+    .flowers-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      height: 100px;
+      align-items: center;
+    }
+
+    .flower {
+      animation: sway 3s ease-in-out infinite;
+    }
+
+    .flower:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .flower:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes sway {
+      0%, 100% {
+        transform: rotate(-5deg);
+      }
+      50% {
+        transform: rotate(5deg);
+      }
+    }
+
+    /* Candles Container */
+    .candles-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 3rem;
+      position: relative;
+      height: 80px;
+    }
+
+    .candle-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .candle {
+      animation: flicker 1.5s infinite;
+    }
+
+    .candle.blown-out {
+      animation: blowOut 0.6s ease-out forwards;
+    }
+
+    .flame {
+      position: absolute;
+      top: -15px;
+      font-size: 1.5rem;
+      animation: flicker 1.5s infinite;
+    }
+
+    .flame.blown-out {
+      animation: fadeOut 0.6s ease-out forwards;
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      20%, 24%, 55% {
+        opacity: 0.8;
+        transform: translateY(-2px);
+      }
+    }
+
+    @keyframes blowOut {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        transform: translateY(20px) scale(0.8);
+      }
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Blow Wind Animation */
+    .wind {
+      position: absolute;
+      font-size: 2rem;
+      animation: windBlow 0.8s ease-out forwards;
+    }
+
+    @keyframes windBlow {
+      0% {
+        opacity: 1;
+        left: 20%;
+        transform: translateX(0);
+      }
+      100% {
+        opacity: 0;
+        left: 80%;
+        transform: translateX(100px);
+      }
+    }
+
+    .birthday-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: white;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+      animation: slideDown 0.8s ease-out;
+    }
+
+    .birthday-content p {
+      font-size: 1.3rem;
+      color: white;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      animation: slideUp 0.8s ease-out 0.3s both;
+    }
+
+    .birthday-message {
+      font-size: 1.2rem;
+      color: white;
+      font-style: italic;
+      line-height: 1.8;
+      margin: 20px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+      animation: slideUp 0.8s ease-out 0.6s both;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .blow-btn {
+      background: white;
+      color: #FF6B6B;
+      border: none;
+      padding: 15px 50px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: 0.3s ease;
+      animation: slideUp 0.8s ease-out 0.9s both;
+    }
+
+    .blow-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .birthday-btn {
+      background: white;
+      color: #FF6B6B;
+      border: none;
+      padding: 15px 50px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: 0.3s ease;
+      animation: slideUp 0.8s ease-out 0.9s both;
+      display: none;
+    }
+
+    .birthday-btn.show {
+      display: inline-block;
+    }
+
+    .birthday-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    }
+
     /* Love Modal/Popup */
     .love-modal {
       display: none;
@@ -335,7 +577,7 @@
     </p>
 
     <div class="buttons">
-      <button class="yes" onclick="showLoveAnimation()">Yes 💖</button>
+      <button class="yes" onclick="showBirthdayWishes()">Yes 💖</button>
       <button class="no" id="noBtn">No 😢</button>
     </div>
 
@@ -343,6 +585,53 @@
       Yayyy! I can't wait for our date 🥰
     </div>
 
+  </div>
+
+  <!-- Birthday Wishes Modal -->
+  <div class="birthday-modal" id="birthdayModal">
+    <div class="birthday-content">
+      <!-- Flowers -->
+      <div class="flowers-container">
+        <span class="flower">🌹</span>
+        <span class="flower">🌷</span>
+        <span class="flower">🌹</span>
+      </div>
+
+      <!-- Candles -->
+      <div class="candles-container" id="candlesContainer">
+        <div class="candle-wrapper">
+          <span class="flame" id="flame0">✨</span>
+          <span class="candle" id="candle0">🕯️</span>
+        </div>
+        <div class="candle-wrapper">
+          <span class="flame" id="flame1">✨</span>
+          <span class="candle" id="candle1">🕯️</span>
+        </div>
+        <div class="candle-wrapper">
+          <span class="flame" id="flame2">✨</span>
+          <span class="candle" id="candle2">🕯️</span>
+        </div>
+        <div class="candle-wrapper">
+          <span class="flame" id="flame3">✨</span>
+          <span class="candle" id="candle3">🕯️</span>
+        </div>
+        <div class="candle-wrapper">
+          <span class="flame" id="flame4">✨</span>
+          <span class="candle" id="candle4">🕯️</span>
+        </div>
+      </div>
+      
+      <h1>Happy Birthday! 🎉</h1>
+      <p>Late Birthday Wishes for You</p>
+      
+      <div class="birthday-message">
+        Happy Birthday Late Shania Mandessa Downer 🎂💕<br><br>
+        For your next birthday I won't be this late and it will be special. ✨
+      </div>
+      
+      <button class="blow-btn" id="blowBtn" onclick="blowCandles()">Blow Out the Candles! 💨</button>
+      <button class="birthday-btn" id="continueBtn" onclick="closeBirthdayAndShowLove()">Continue 💕</button>
+    </div>
   </div>
 
   <!-- Love Modal with Cute Blushing GIF -->
@@ -379,6 +668,48 @@
         heart.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
         container.appendChild(heart);
       }
+    }
+
+    // Show birthday wishes animation
+    function showBirthdayWishes() {
+      document.getElementById('message').style.display = 'block';
+      document.getElementById('birthdayModal').classList.add('active');
+      createHeartBurst();
+      createIntenseHeartAnimation();
+    }
+
+    // Blow out candles animation
+    function blowCandles() {
+      const candlesContainer = document.getElementById('candlesContainer');
+      
+      // Create wind effect
+      const wind = document.createElement('div');
+      wind.className = 'wind';
+      wind.textContent = '💨';
+      candlesContainer.appendChild(wind);
+      
+      // Blow out each candle
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const candle = document.getElementById(`candle${i}`);
+          const flame = document.getElementById(`flame${i}`);
+          
+          candle.classList.add('blown-out');
+          flame.classList.add('blown-out');
+        }, i * 150);
+      }
+      
+      // Hide blow button and show continue button after animation
+      setTimeout(() => {
+        document.getElementById('blowBtn').style.display = 'none';
+        document.getElementById('continueBtn').classList.add('show');
+      }, 800);
+    }
+
+    // Close birthday modal and show love modal
+    function closeBirthdayAndShowLove() {
+      document.getElementById('birthdayModal').classList.remove('active');
+      document.getElementById('loveModal').classList.add('active');
     }
 
     // Show love animation modal
@@ -442,7 +773,13 @@
       createFallingHearts();
     });
 
-    // Close modal when clicking outside
+    // Close modals when clicking outside
+    document.getElementById('birthdayModal').addEventListener('click', (e) => {
+      if (e.target.id === 'birthdayModal') {
+        document.getElementById('birthdayModal').classList.remove('active');
+      }
+    });
+
     document.getElementById('loveModal').addEventListener('click', (e) => {
       if (e.target.id === 'loveModal') {
         closeLoveModal();
