@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Date Proposal</title>
+  <title>Happy Birthday Shania</title>
   <style>
     * {
       margin: 0;
@@ -32,78 +32,6 @@
       backdrop-filter: blur(6px);
       position: relative;
       z-index: 10;
-    }
-
-    /* Tom and Jerry Animation */
-    .meme-container {
-      height: 150px;
-      margin-bottom: 30px;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .tom {
-      font-size: 4rem;
-      position: absolute;
-      left: 10%;
-      animation: tomWalk 4s infinite ease-in-out;
-    }
-
-    .jerry {
-      font-size: 2.5rem;
-      position: absolute;
-      right: 10%;
-      animation: jerryWalk 4s infinite ease-in-out;
-    }
-
-    .heart {
-      font-size: 2rem;
-      position: absolute;
-      animation: floatHeart 3s infinite ease-in;
-      opacity: 0;
-    }
-
-    @keyframes tomWalk {
-      0% { left: 10%; transform: scaleX(1); }
-      25% { left: 30%; }
-      50% { left: 45%; }
-      75% { left: 30%; }
-      100% { left: 10%; }
-    }
-
-    @keyframes jerryWalk {
-      0% { right: 10%; transform: scaleX(-1); }
-      25% { right: 30%; }
-      50% { right: 45%; }
-      75% { right: 30%; }
-      100% { right: 10%; }
-    }
-
-    @keyframes floatHeart {
-      0% {
-        bottom: 50px;
-        opacity: 1;
-        left: 50%;
-        transform: translateX(-50%) scale(1);
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        bottom: 200px;
-        opacity: 0;
-        left: 50%;
-        transform: translateX(-50%) scale(0.5);
-      }
-    }
-
-    .hearts-burst {
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      pointer-events: none;
     }
 
     /* Floating Hearts Background */
@@ -136,6 +64,38 @@
         top: 100vh;
         opacity: 0;
       }
+    }
+
+    .heart {
+      font-size: 2rem;
+      position: absolute;
+      animation: floatHeart 3s infinite ease-in;
+      opacity: 0;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        bottom: 50px;
+        opacity: 1;
+        left: 50%;
+        transform: translateX(-50%) scale(1);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 200px;
+        opacity: 0;
+        left: 50%;
+        transform: translateX(-50%) scale(0.5);
+      }
+    }
+
+    .hearts-burst {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      pointer-events: none;
     }
 
     /* Birthday Modal */
@@ -356,89 +316,25 @@
       box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
     }
 
-    .birthday-btn {
-      background: white;
-      color: #FF6B6B;
-      border: none;
-      padding: 15px 50px;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 20px;
-      transition: 0.3s ease;
-      animation: slideUp 0.8s ease-out 0.9s both;
+    /* Blushing GIF Display */
+    .gif-section {
+      margin-top: 30px;
       display: none;
+      animation: slideUp 0.8s ease-out both;
     }
 
-    .birthday-btn.show {
-      display: inline-block;
+    .gif-section.show {
+      display: block;
     }
 
-    .birthday-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Love Modal/Popup */
-    .love-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.5s ease-in;
-    }
-
-    .love-modal.active {
-      display: flex;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    .love-content {
-      background: linear-gradient(135deg, #ff4d6d 0%, #ff1e4d 100%);
-      border-radius: 30px;
-      padding: 50px;
-      text-align: center;
-      max-width: 500px;
-      animation: popIn 0.6s ease-in-out;
-      box-shadow: 0 20px 60px rgba(255, 77, 109, 0.6);
-    }
-
-    @keyframes popIn {
-      0% {
-        transform: scale(0) rotate(-45deg);
-        opacity: 0;
-      }
-      50% {
-        transform: scale(1.1) rotate(5deg);
-      }
-      100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-      }
-    }
-
-    .love-gif {
+    .blushing-gif {
       width: 100%;
       max-width: 300px;
       border-radius: 20px;
-      margin-bottom: 30px;
+      margin: 20px auto;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       animation: bounce 1s ease-in-out infinite;
+      display: block;
     }
 
     @keyframes bounce {
@@ -450,53 +346,14 @@
       }
     }
 
-    .love-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .love-content p {
+    .gif-message {
       font-size: 1.1rem;
-      margin-bottom: 20px;
       color: white;
-      line-height: 1.8;
+      margin-top: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
     }
 
-    .message-section {
-      margin: 25px 0;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 15px;
-      backdrop-filter: blur(5px);
-    }
-
-    .elegant-message {
-      font-size: 0.95rem;
-      color: #ffe4e9;
-      font-style: italic;
-      letter-spacing: 0.3px;
-      line-height: 1.6;
-    }
-
-    .close-btn {
-      background: white;
-      color: #ff4d6d;
-      border: none;
-      padding: 15px 40px;
-      border-radius: 50px;
-      font-size: 1rem;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s ease;
-    }
-
-    .close-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    }
-
+    /* Main Content */
     h1 {
       font-size: 3rem;
       margin-bottom: 20px;
@@ -508,51 +365,30 @@
       line-height: 1.6;
     }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    button {
-      padding: 15px 30px;
-      border: none;
-      border-radius: 50px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-      font-weight: bold;
-    }
-
-    .yes {
+    .start-btn {
       background: #ff4d6d;
       color: white;
+      border: none;
+      padding: 15px 50px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
     }
 
-    .yes:hover {
+    .start-btn:hover {
       transform: scale(1.1);
       background: #ff1e4d;
     }
 
-    .no {
-      background: white;
-      color: black;
-      position: relative;
-    }
-
-    .message {
-      margin-top: 25px;
-      font-size: 1.5rem;
-      display: none;
-      color: #ffd166;
-      animation: celebrate 0.5s ease-in-out;
-    }
-
-    @keyframes celebrate {
-      0% { transform: scale(0); opacity: 0; }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); opacity: 1; }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
   </style>
@@ -562,29 +398,13 @@
   <div class="floating-hearts" id="floatingHeartsContainer"></div>
 
   <div class="container">
-    <!-- Tom and Jerry Animation -->
-    <div class="meme-container">
-      <div class="tom">🐱</div>
-      <div class="jerry">🐭</div>
-      <div class="hearts-burst" id="heartsBurst"></div>
-    </div>
-
-    <h1>Hey Shania ❤️</h1>
+    <h1>Hey Shania! 🎉</h1>
 
     <p>
-      Every moment with you feels special, and I was wondering...
-      would you go on a date with me?
+      I know I'm a little late, but I wanted to wish you a special Happy Birthday! ❤️
     </p>
 
-    <div class="buttons">
-      <button class="yes" onclick="showBirthdayWishes()">Yes 💖</button>
-      <button class="no" id="noBtn">No 😢</button>
-    </div>
-
-    <div class="message" id="message">
-      Yayyy! I can't wait for our date 🥰
-    </div>
-
+    <button class="start-btn" onclick="showBirthdayWishes()">Open Birthday Surprise 🎂</button>
   </div>
 
   <!-- Birthday Wishes Modal -->
@@ -630,27 +450,14 @@
       </div>
       
       <button class="blow-btn" id="blowBtn" onclick="blowCandles()">Blow Out the Candles! 💨</button>
-      <button class="birthday-btn" id="continueBtn" onclick="closeBirthdayAndShowLove()">Continue 💕</button>
-    </div>
-  </div>
 
-  <!-- Love Modal with Cute Blushing GIF -->
-  <div class="love-modal" id="loveModal">
-    <div class="love-content">
       <!-- Cute Blushing GIF -->
-      <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute blushing" class="love-gif">
-      
-      <h2>That's Amazing! 💕</h2>
-      <p>I'm so thrilled, Shania!</p>
-      
-      <div class="message-section">
-        <div class="elegant-message">
-          🌬️ I can't wait to breathe the air around you because it's so calm and refreshing<br><br>
-          📅 The date will be in June - stay tuned for more details! ✨
+      <div class="gif-section" id="gifSection">
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute blushing" class="blushing-gif">
+        <div class="gif-message">
+          You deserve all the happiness in the world! 💕✨
         </div>
       </div>
-      
-      <button class="close-btn" onclick="closeLoveModal()">Close 💕</button>
     </div>
   </div>
 
@@ -672,9 +479,7 @@
 
     // Show birthday wishes animation
     function showBirthdayWishes() {
-      document.getElementById('message').style.display = 'block';
       document.getElementById('birthdayModal').classList.add('active');
-      createHeartBurst();
       createIntenseHeartAnimation();
     }
 
@@ -699,46 +504,11 @@
         }, i * 150);
       }
       
-      // Hide blow button and show continue button after animation
+      // Hide blow button and show cute GIF after animation
       setTimeout(() => {
         document.getElementById('blowBtn').style.display = 'none';
-        document.getElementById('continueBtn').classList.add('show');
+        document.getElementById('gifSection').classList.add('show');
       }, 800);
-    }
-
-    // Close birthday modal and show love modal
-    function closeBirthdayAndShowLove() {
-      document.getElementById('birthdayModal').classList.remove('active');
-      document.getElementById('loveModal').classList.add('active');
-    }
-
-    // Show love animation modal
-    function showLoveAnimation() {
-      document.getElementById('message').style.display = 'block';
-      document.getElementById('loveModal').classList.add('active');
-      createHeartBurst();
-      createIntenseHeartAnimation();
-    }
-
-    // Close love modal
-    function closeLoveModal() {
-      document.getElementById('loveModal').classList.remove('active');
-    }
-
-    // Create heart burst animation
-    function createHeartBurst() {
-      const heartsBurst = document.getElementById('heartsBurst');
-      heartsBurst.innerHTML = '';
-      
-      for (let i = 0; i < 15; i++) {
-        const heart = document.createElement('div');
-        heart.textContent = '❤️';
-        heart.className = 'heart';
-        heart.style.left = (Math.random() * 100 - 50) + '%';
-        heart.style.animationDelay = (i * 0.1) + 's';
-        heart.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
-        heartsBurst.appendChild(heart);
-      }
     }
 
     // Create intense heart animation when modal opens
@@ -759,30 +529,15 @@
       }
     }
 
-    // No button runs away
-    const noBtn = document.getElementById('noBtn');
-
-    noBtn.addEventListener('mouseover', () => {
-      const x = Math.floor(Math.random() * 300) - 150;
-      const y = Math.floor(Math.random() * 300) - 150;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    });
-
     // Initialize falling hearts on page load
     window.addEventListener('load', () => {
       createFallingHearts();
     });
 
-    // Close modals when clicking outside
+    // Close modal when clicking outside
     document.getElementById('birthdayModal').addEventListener('click', (e) => {
       if (e.target.id === 'birthdayModal') {
         document.getElementById('birthdayModal').classList.remove('active');
-      }
-    });
-
-    document.getElementById('loveModal').addEventListener('click', (e) => {
-      if (e.target.id === 'loveModal') {
-        closeLoveModal();
       }
     });
 
